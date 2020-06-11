@@ -30,5 +30,5 @@ main : BTree.cpp \
 		User.cpp \
 		UserController.cpp \
 		Hash.cpp \
-		-o main -Wall -Wextra -Wconversion -Wshadow \
+		-o code -Wall -Wextra -Wconversion -Wshadow \
 		-std=c++11 -O2
