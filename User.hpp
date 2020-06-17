@@ -1,6 +1,7 @@
 #ifndef USER_HPP
 #define USER_HPP
 
+#include <iostream>
 #include "const_variable.hpp"
 #include "Order.hpp"
 
@@ -13,7 +14,6 @@ public:
 	int privilege;
 	int create_time; //
 	int order_cnt;
-	int is_login; //
 
 	User( const char _username[],
 		const char _password[],
@@ -21,8 +21,7 @@ public:
 		const char _mail_addr[],
 		int _privilege,
 		int _create_time,
-		int _order_cnt,
-		int _is_login );
+		int _order_cnt);
 	User() {}
 	// User( const User &other );
 	~User();

@@ -3,15 +3,16 @@
 
 #include <fstream>
 #include <string>
+#include <iostream>
 #include "const_variable.hpp"
 #include "Time.hpp"
 #include "Hash.hpp"
+#include "BTree.hpp"
 
 class Interface;
 
 class TicketController {
 	Interface *itf;
-	int get_all( const Train &train, const char from[], const char to[], Time &leaving_time, Time &arriving_time );
 public:
 	std::fstream btree_file;
 	std::fstream info_file;
@@ -28,14 +29,26 @@ public:
 			strcpy(train_id, str);
 		}
 		bool operator < (const Char &b) const{
-			return Hash().hash(str) < Hash().hash(b.str);	
+			for (int i = 0; i < TRAIN_ID_LEN; ++i) {
+				if(str[i] < b.str[i]) return 1;
+				if(str[i] > b.str[i]) return 0;
+				if(str[i] == '\0') return 0;
+			}
+			return 0;
 		}
 		bool operator == (const Char &b) const{
-			return Hash().hash(str) == Hash().hash(b.str);
+			for (int i = 0; i < TRAIN_ID_LEN; ++i) {
+				if(str[i] < b.str[i] || str[i] > b.str[i]) return 0;
+				if(str[i] == '\0') return 1;
+			}
+			return 1;
 		}
 	};
+
+	BTree<std::pair<std::pair<int, int>, std::pair<int, int> >, std::pair<Char,int> > btree;
 	
 	int query_pass( const char station[], std::pair<Char, int> *&result );
+	int get_all( const Train &train, int l, int r, Time &leaving_time, Time &arriving_time );
 	void query_ticket( const char from[],
 					   const char to[],
 					   Date date,

@@ -6,12 +6,10 @@ User::User( const char _username[],
             const char _mail_addr[],
             int _privilege,
 			int _create_time,
-			int _order_cnt,
-			int _is_login ):
+			int _order_cnt ):
 			privilege(_privilege),
 			create_time(_create_time),
-			order_cnt(_order_cnt),
-			is_login(_is_login) {
+			order_cnt(_order_cnt){
     strcpy(username,  _username);
     strcpy(password,  _password);
     strcpy(name,      _name);

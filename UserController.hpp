@@ -2,7 +2,10 @@
 #define USER_CONTROLLER_HPP
 
 #include <fstream>
+#include <iostream>
 #include "Order.hpp"
+#include "User.hpp"
+#include "BTree.hpp"
 
 class Interface;
 
@@ -12,6 +15,7 @@ public:
 	std::fstream btree_file; // updated
 	std::fstream info_file; // updated
 	Interface *interface;
+	BTree<std::pair<int, int>, User> btree;
 	bool is_online[100007];
 	
 	void add_user( const char cur_username[],
@@ -23,7 +27,6 @@ public:
 	void login( const char username[],
 				const char password[] );
 	void logout( const char username[] );
-	bool is_login( const char username[] );
 	void query_profile( const char cur_username[],
 						const char username[] );
 	void modify_profile( const char cur_username[],
@@ -37,11 +40,11 @@ public:
 	void load( Interface *ifs );
 	void save();
 	
-	void modify_order( const char username[], int order_id, Order order );
-	Order get_order( const char username[], int order_id );
-	void print_profile( const char username[] );
-	void print_order( const char username[] );
-	void add_order( const char username[], Order order );
+	void modify_order( std::pair<int, int> hash, int order_id, Order order );
+	Order get_order( std::pair<int, int> hash, int order_id );
+	void print_profile( const char username[], std::pair<int, int> hash );
+	void print_order( std::pair<int, int> hash );
+	void add_order( std::pair<int, int> hash, const Order& order );
 };
 
 #endif // USER_CONTROLLER_HPP

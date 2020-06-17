@@ -4,12 +4,10 @@
 #include<iostream>
 
 class Date{
-	bool is_leap_year() const;
 	int cal_day() const;
-	void add_month();
 public:
-	int year, month, day;
-	Date(int y = 2020, int m = 0, int d = 0) : year(y), month(m), day(d){};
+	int month, day;
+	Date(int m = 0, int d = 0) : month(m), day(d){};
 	Date operator + (const int num) const; //num >= 0
 	bool operator < (const Date& b) const;
 	int operator - (const Date& b) const;

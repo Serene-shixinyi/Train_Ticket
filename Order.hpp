@@ -5,15 +5,14 @@
 #include "Date.hpp"
 
 class Order {
-public:
+public: 
 	char username[USERNAME_LEN];
 	int order_id;
 	int status;
 	char train_id[TRAIN_ID_LEN];
-	char from[STATION_LEN];
-    char to[STATION_LEN];
+	int from;
+	int to;
 	Date sale_date;
-	long long price;
 	int num;
 	int buy_time;
 
@@ -21,10 +20,9 @@ public:
 		  int _order_id,
 		  int _status,
 		  const char _train_id[],
-		  const char _from[],
-		  const char _to[],
-		  Date _sale_date,
-		  long long _price,
+		  int _from,
+		  int _to,
+		  const Date& _sale_date,
 		  int _num,
 		  int _buy_time);
 	Order() {}

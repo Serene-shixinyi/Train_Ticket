@@ -572,6 +572,7 @@ void Interface :: clean() {
 	FileOperator().create_new_file("counts"); // initialize in start()
 	
 	start();
+	puts("0");
 }
 
 int Interface :: split( std::string str, char ch, std::string *&ans ) {
@@ -621,5 +622,5 @@ Time Interface :: read_time( std::string str ) {
 Date Interface :: read_date( std::string str ) {
 	int month = read_num( str.substr(0, 2) );
 	int day = read_num( str.substr(3, 2) );
-	return Date(2020, month, day);
+	return Date(month, day);
 }
